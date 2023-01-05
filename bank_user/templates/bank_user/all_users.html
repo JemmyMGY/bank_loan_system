@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+All users dashboard
+{% endblock title %}
+
+
+{% block content %}
+
+<h1>All Users</h1>
+<ul>
+{% for user in all_users_list %}
+    <li>{{ user.user_name }} || {{ user.user_email }}</li>
+{% empty %}
+    <li>No users yet.</li>
+{% endfor %}
+</ul>
+
+{% endblock content %}
+
+

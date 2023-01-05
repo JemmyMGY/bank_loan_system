@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'bank_user/styles.css' %}">
+{% endblock stylesheet %}
+
+{% block title %}
+    Log in
+{% endblock title %}
+
+
+{% block content %}
+    <h1>Welcome Back!</h1>
+    <form action="/" method="POST" >
+
+        {% csrf_token %}
+
+            {% for field in form %}
+            <div class = "form-control {% if field.errors %} errors {% endif %}">
+                {{field.label_tag}}
+                {{field}}
+                {{field.errors}}
+            </div>
+            {% endfor %}
+            
+            
+            <button type="submit">Log in</button>
+            <div>
+                <a href="{% url 'user-sign-up-page' %}"> Create new Account</a> 
+            </div>
+            
+
+    </form>
+    
+{% endblock content %}

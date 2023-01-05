@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Calculation table
+{% endblock title %}
+
+
+{% block content %}
+
+<h1>Please fill required data</h1>
+<form action="" method="POST" >
+    {% csrf_token %}
+    
+    {% for field in form %}
+    <div class = "form-control {% if field.errors %} errors {% endif %}">
+        {{field.label_tag}}
+        {{field}}
+        {{field.errors}}
+    </div>
+    {% endfor %}         
+        
+        <button type="submit" name= "apply" value="apply"> Accept and Apply</button>
+        <button type = "submit" name= "calculate" value="calculate"> Calculate</button>
+</form>
+    {% if loan_results  %}
+        <h1>Loan Summary</h1>
+        <table>
+            <tr>
+                {% for col in loan_results %}            
+                        <th>{{ col }}</th>  
+                {% endfor %}
+            </tr>
+            
+            <tr>
+                {% for col, val in loan_results.items %}
+                    <td> {{val}}</td>
+                {% endfor %}
+            </tr>
+
+           
+           
+        </table>
+
+        <hr>
+
+
+        <h1>Loan Schedule</h1>
+        <table>
+            <tr>
+                {% for col in loan_schedule_columns %}            
+                        <th>{{ col }}</th>  
+                {% endfor %}
+            </tr>
+            
+           
+                {% for year_details in loan_schedule %}
+                <tr>
+                    {% for key,val in year_details.items %}
+                        <td> {{val}}</td>
+                    {% endfor %}
+                    
+                </tr>
+                {% endfor %}
+            
+            
+           
+           
+        </table>
+
+        {% endif %}
+        
+{% endblock content %}

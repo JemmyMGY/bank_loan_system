@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %} Log in{% endblock title %}
+
+{% block content %}
+    <h1>Welcome {{user_details}}to our Bank!</h1>
+
+    <div class= "welcome">
+        <button><a href="{% url 'user-sign-up-page' %}"></a> Sign Up</button>
+        <button><a href="{% url 'user-log-in-page' %}"></a> Log in</button>
+    </div>
+{% endblock content %}

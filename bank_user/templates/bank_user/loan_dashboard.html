@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Hello {{user_email}}
+{% endblock title %}
+
+
+{% block content %}
+
+    <h1>{{user_email}}'s Loans dashboard</h1>
+    <button id ="loan_anchor">
+        <a href="{% url 'loan-request-page' user_email %}" > Request Loan?</a> 
+    </button>
+     
+    <hr>
+    <h1>Loans Status</h1>
+    {% if not all_user_loans %}
+        <h1>No loans yet.</h1>
+    
+    {% else %}
+        <table>
+            <tr>
+                {% for col in column_names %}            
+                        <th>{{ col }}</th>  
+                {% endfor %}
+            </tr>
+            
+                {% for loan in all_user_loans %}
+                        <tr>
+                            {% for data_info,val in loan.items %}
+                                {% if data_info != "user_requested_id" %}
+                                    <td   {% if data_info == "is_approved" %} class = " {% if val is True %} approved {% else %} pending {% endif %} " {% endif %} > 
+                                         {% if val is False %} Pending {% elif val is True %} Accepted {% else %} {{val}} {% endif%}   </td>
+                                {% endif %}
+                            {% endfor %}
+                            
+                        </tr>
+                    {% empty %}
+                        <tr></tr>
+                    
+                {% endfor %}
+           
+           
+        </table>
+    {% endif %}
+    
+
+{% endblock content %}
