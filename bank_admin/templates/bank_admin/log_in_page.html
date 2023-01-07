@@ -1,15 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
 {% block title %}
     Log in
 {% endblock title %}
 
 
 {% block content %}
-    <h1>Welcome Back!</h1>
-    <form action="/" method="POST" >
+    <h1>Welcome Admin!</h1>
+    <form action="/bank_admin" method="POST" >
 
         {% csrf_token %}
 
@@ -23,13 +22,10 @@
             
             
             <button type="submit">Log in</button>
-            <div>
-                <a href="{% url 'user-sign-up-page' %}"> Create new Account</a> 
-            </div>
-            
             {% if msg %}
-            <p style = " color: red; ">{{msg}}</p>
-        {% endif %}
+                <p style = " color: red; ">{{msg}}</p>
+            {% endif %}
+
     </form>
     
 {% endblock content %}

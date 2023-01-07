@@ -1,17 +1,19 @@
 from django.shortcuts import render
-from django.http import HttpResponse, Http404, HttpResponseForbidden, HttpResponseServerError, HttpResponseRedirect
-from django.urls import reverse_lazy, reverse
+from django.http import HttpResponseForbidden, HttpResponseServerError, HttpResponseRedirect
+from django.urls import reverse
 from .models import LoanModel, UserModel
 from .forms import LogInForm, SignUpForm, LoanRequestForm
 from django.views.generic.edit import FormView
 from django.views.generic.list import ListView
-from django.views.generic.base import TemplateView, View
 from .loan_calculator import  LoanCalculator
 
 # Create your views here.
 
 def get_all_loans():
-    return LoanModel.objects.all()
+    try:
+        return LoanModel.objects.all()
+    except:
+        return None
 
 def get_user_loans(user_email):
     try:
@@ -39,14 +41,12 @@ class LogInView(FormView):
     def get_success_url(self):
         return reverse("loans-dashboard", kwargs = {"user_email" : self.request.POST["user_email"]} )
         
-
-
     def form_valid(self, form):
         user_info = form.cleaned_data
         user_details = get_user_by_email(user_info['user_email'])
         if user_details and user_details.user_password == user_info["user_password"]:
             return HttpResponseRedirect(self.get_success_url())
-        return HttpResponseRedirect(reverse("user-log-in-page"), {"wrong_pass_or_email" : "please make sure you entered right data"})
+        return render(self.request, "bank_user/log_in_page.html", {"form" : form, "msg" : "Invalid email or password"})
 
         
 
@@ -127,17 +127,6 @@ class LoanRequestView(FormView):
         elif  'calculate' in self.request.POST:
             loan_schedule = loan_request.generate_Schedule()
             loan_results = loan_request.get_result_summary()
-            print(loan_results)
             return render(self.request, 'bank_user/loan_request_page.html', {'form': form , "loan_results" : loan_results, "loan_schedule" : loan_schedule , "loan_schedule_columns" : loan_schedule[0].keys()})
         
         return response
-
-
-class UsersBoardView(ListView):
-    template_name = "bank_user/all_users.html"
-    model = UserModel
-    context_object_name = "all_users_list"
-
-    def get_queryset(self):
-        return super().get_queryset()
-      

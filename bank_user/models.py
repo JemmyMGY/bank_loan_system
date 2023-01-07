@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils.text import slugify
 from django.core.validators import MinValueValidator, MaxValueValidator, MinLengthValidator
 from datetime import datetime  
 # Create your models here.
@@ -26,6 +25,7 @@ class UserModel(models.Model):
     
 
 class LoanModel(models.Model):
+    is_approved = models.BooleanField(default=False) 
     user_requested = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     loan_amount = models.DecimalField(max_digits=12, decimal_places=2)
     loan_years = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(30)])
@@ -35,7 +35,7 @@ class LoanModel(models.Model):
     rate_per_period = models.DecimalField(max_digits=4, decimal_places=3)
     total_payment = models.DecimalField(max_digits=12, decimal_places=2)
     total_interest = models.DecimalField(max_digits=12, decimal_places=2)
-    is_approved = models.BooleanField(default=False) 
+    
 
     @classmethod
     def get_fields_names(self):
