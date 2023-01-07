@@ -19,7 +19,7 @@ Each customer will login and can create many loans.
 - The loan status becomes approved.
 - Then the customer can see it.
 
-- ### My Status : **Pending**
+- ### My Status : **Done**
 
 # Notes
 - I have used Pure django v4.1 without using django rest as a beginner i see that i should konw how the framework works and how the things operated/done under the hood 
