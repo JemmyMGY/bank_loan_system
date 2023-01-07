@@ -37,3 +37,11 @@ Each customer will login and can create many loans.
 
 ## User
 - For user log in page, just hit the **[localhost:8000]** you may find many users registered for testing purpose, for example [*memo@gmail.com*, *mo.gamal.yousseef@gmail.com*] and all users have the same **[password = 123456789]**, but for sure you can make your own account by clicking on **Create new account**. 
+
+
+# To be added Features 
+
+1. Authentication for Users and Admin also, as my app would redirect to User's loan dashboard as long as you hit the loans dash board url with the user email kwarg 
+2. Improve the code quality and use the rest framework to just use the pre-made components which are definitely well tested and more functional instead of handling every thing on my own code
+3. For sure the UI is just django template + some CSS and this might be replaced by UI framework like **React.js, Vue.js** and so on, so again we can use the pre-made components and great UI and get away from the headache of handling every single point. **[note: i'm not that good in UI, UX and never worked with such frameworks before]**
+4. Deploy the app to the production line by any provided host  
