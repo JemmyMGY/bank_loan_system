@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Admin 
+{% endblock title %}
+
+{% block content %}
+    <h1>{{admin_email}}'s Page</h1>
+    <hr>
+    <h1>Loans Status</h1>
+    {% if not all_pending_loans %}
+        <h1>No loans yet.</h1>
+    {% else %}
+    
+        <table>
+            <tr>
+                {% for col in column_names %}            
+                        <th>{{ col }}</th>  
+                {% endfor %}
+            </tr>
+            
+            {% for loan in all_pending_loans %}
+                <tr>
+                    {% for data_info,val in loan.items %}
+
+                        {% if data_info == "is_approved" %}
+                            
+                                <td class = "pending"> 
+                                    <form action=" {% url 'admin-loans-dashboard' admin_email %}" method="POST" class = "loan_form">
+                                        {% csrf_token %}
+                                        <button type= "submit" name = "accept" value = "{{loan.id}}"> Accept</button>
+                                    </form> 
+                                     
+                                </td>
+                            
+                        {% else %}
+                        <td>
+                        {{val}} 
+                        </td>
+                        {% endif %}
+                        
+                    {% endfor %}
+                    
+                </tr>
+                        
+                        
+                    {% empty %}
+                        <tr></tr>
+                    
+                {% endfor %}
+           
+           
+        </table>
+        
+    {% endif %}
+{% endblock content %}

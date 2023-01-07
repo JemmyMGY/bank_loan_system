@@ -16,6 +16,10 @@ form {
   border-radius: 12px;
   background-color: #ffffff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  width: 100%;
+  overflow:scroll;
+  display: block;
+  overflow: hidden;
 }
 
 form button {
@@ -90,19 +94,18 @@ button:active {
 table{
   border: 0.5rem solid;
   background-color: aliceblue;
-  overflow-x: scroll;
-  width: 80%;
-  min-width: 50%;
-  display: flexbox;
   border: 0.5rem solid #6048ca;
   margin: 0 auto;
+  width: fit-content;
+  max-width: 90%;
+  overflow-x:auto;
+  display: block;
 }
 
 table th,
 table tr, table td {
   padding: 5px;
   text-align: center;
-  display: flexbox;
 }
 
 th {
@@ -137,4 +140,9 @@ tr {
 #loan_anchor:hover {
   background-color: #ddbdfb;
   border-color: #3c086d;
+}
+
+
+.loan_form{
+  display: contents;
 }
