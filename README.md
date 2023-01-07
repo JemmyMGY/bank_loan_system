@@ -28,3 +28,12 @@ Each customer will login and can create many loans.
 - My loan generated sheet results don't exactly match the results in the [Provided sheet](https://docs.google.com/spreadsheets/d/1cqAqK4fVlMmggEUZNAT984QplJyf3-3O4w6nSvlvsw4/edit#gid=0) but this may be an accuracy difference as i did **reverse engineering** to know the name of used functions and utilized the **numpy_financial** library ones which may be not the same as used in the sheet, i only suspect that but we may argue  
 
 - i know that there would be a lot of best practices but as my approach to solve the task is **first get things done, then optimise later**
+
+# Try the app
+## Admin
+- log in page url is **[localhost:8000/bank_admin]**, there is one admin right now with 
+    - **email: *admin@tryd.com***
+    - **password: 05012023**
+
+## User
+- For user log in page, just hit the **[localhost:8000]** you may find many users registered for testing purpose, for example [*memo@gmail.com*, *mo.gamal.yousseef@gmail.com*] and all users have the same **[password = 123456789]**, but for sure you can make your own account by clicking on **Create new account**. 
